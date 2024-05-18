@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <b class="manager"> Contact manager</b>
+    <div class="over">
+    <div class="parent">
+        <div class="box1">
+            <b class="head">Add Contact</b> 
+            <label for="name">Name</label>
+            <input type="text" id="name">
+            <label for="Email">Email Address </label>
+            <input type="text" id="Email">
+
+            <button onclick="Addcont()" class="Submit"> Submit  </button>
+            <div class="border"></div>
+
+            <div class="result" id="resultdata">
+                <div class="first">
+                <p class="nameresult">Name</p>
+                <p class="mailresult">Email</p>
+                </div>
+                <button onclick="cancel()" class="del">delete</button>
+            </div>
+        </div>
+        
+        
+
+
+    </div>
+    </div>
+    <script>
+        function Addcont(){
+           // var Name = document.getElementById("nameresult").value;
+           // var mailadd = document.getElementById("Email").value;
+           
+            var res = document.getElementById("resultdata");
+            res.style.display = "block";
+
+             let Name = document.getElementById("name").value;
+             let Email = document.getElementById("Email").value;
+             let productList = [];
+             let token = localStorage.getItem("productList"); 
+
+             
+
+             if(token == null){
+                productList = []
+             }else{
+                productList = JSON.parse(token)
+             }
+
+             console.log("token", token)
+
+
+              productList.push(
+                {Name: Name, Email: Email}
+              );
+
+              localStorage.setItem("productList", JSON.stringify(productList));
+        }
+
+        function cancel(){
+          var clr = document.getElementById("resultdata");
+          clr.style.display = "none";
+        }
+    </script>
+</body>
+</html>
